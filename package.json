@@ -1,0 +1,43 @@
+{
+  "name": "the-ghost-game",
+  "version": "1.0.0",
+  "description": "This repository is about a puzzle game based on some classic NES and GBC games",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "clear": "rimraf ./build/index.js ./build/index.js.map",
+    "build": "esbuild --define:ENVIRONMENT=\\\"production\\\" ./src/index.ts --bundle --minify --sourcemap --outfile=./build/index.js",
+    "start": "esbuild --define:ENVIRONMENT=\\\"production\\\" ./src/index.ts --bundle --minify --sourcemap --outfile=./build/index.js --servedir=./build",
+    "dev": "esbuild --define:ENVIRONMENT=\\\"development\\\" ./src/index.ts --bundle --sourcemap --outfile=./build/index.js --watch --servedir=./build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nadjiel/the-ghost-game.git"
+  },
+  "keywords": [
+    "game",
+    "html5",
+    "js",
+    "ts",
+    "javascript",
+    "typescript",
+    "puzzle",
+    "nes",
+    "gbc",
+    "retro",
+    "classic",
+    "figure",
+    "engine"
+  ],
+  "author": "Daniel de Oliveira Sousa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nadjiel/the-ghost-game/issues"
+  },
+  "homepage": "https://github.com/nadjiel/the-ghost-game#readme",
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.2"
+  }
+}
