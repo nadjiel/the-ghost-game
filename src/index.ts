@@ -1,5 +1,5 @@
 import "./liveServer.js";
 
-import { Game } from "figure-engine";
+import TheGhostGame from "./theGhostGame.js";
 
-new Game().main();
+new TheGhostGame();
