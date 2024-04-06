@@ -37,6 +37,7 @@
   "homepage": "https://github.com/nadjiel/the-ghost-game#readme",
   "devDependencies": {
     "esbuild": "^0.20.2",
+    "figure-engine": "^0.1.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.2"
   }

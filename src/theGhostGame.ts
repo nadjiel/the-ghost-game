@@ -2,9 +2,10 @@ import { Game } from "figure-engine";
 
 export class TheGhostGame extends Game {
 
-  private readonly WIDTH = 256;
-  private readonly HEIGHT = 240;
+  private readonly FPS = 60;
   private readonly TILE_SIZE = 16;
+  private readonly WIDTH = 256; // 16 TILES
+  private readonly HEIGHT = 240; // 15 TILES
   private scale = 3;
 
   constructor() {
@@ -15,6 +16,13 @@ export class TheGhostGame extends Game {
       this.HEIGHT * this.scale
     );
     this.doMaintainAspectRatio();
+    this.setFps(this.FPS);
+
+    this.start();
+  }
+
+  public onUpdate(): void {
+    console.log(`Frame: ${this.getCurrentFrame()}`);
   }
 
 }
