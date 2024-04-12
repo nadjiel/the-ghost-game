@@ -22,7 +22,25 @@ export class TheGhostGame extends Game {
   }
 
   public onUpdate(): void {
-    console.log(`Frame: ${this.getCurrentFrame()}`);
+    const enter = {
+      pressed: this.getKeyboardInput().isPressed("Enter"),
+      held: this.getKeyboardInput().isHeld("Enter"),
+      released: this.getKeyboardInput().isReleased("Enter"),
+      heldTime: this.getKeyboardInput().getHeldTime("Enter")
+    };
+
+    const mouse = {
+      x: this.getMouseInput().getX(),
+      y: this.getMouseInput().getY(),
+      leftPressed: this.getMouseInput().isPressed(0),
+      leftHeld: this.getMouseInput().isHeld(0),
+      leftReleased: this.getMouseInput().isReleased(0),
+      leftHeldTime: this.getMouseInput().getHeldTime(0),
+      scrollY: this.getMouseInput().getWheelYRotation()
+    }
+
+    console.log(`Enter: [ ${enter.pressed}, ${enter.held}, ${enter.released}, ${enter.heldTime} ]`);
+    console.log(`Mouse: [ ${mouse.x}, ${mouse.y}, ${mouse.leftPressed}, ${mouse.leftHeld}, ${mouse.leftReleased}, ${mouse.leftHeldTime}, ${mouse.scrollY} ]`);
   }
 
 }
