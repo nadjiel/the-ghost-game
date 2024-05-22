@@ -1,46 +1,36 @@
 import { Game } from "figure-engine";
 
+import { Stage1 } from "./stages/stage1.js";
+
 export class TheGhostGame extends Game {
 
-  private readonly FPS = 60;
-  private readonly TILE_SIZE = 16;
-  private readonly WIDTH = 256; // 16 TILES
-  private readonly HEIGHT = 240; // 15 TILES
-  private scale = 3;
+  private static INSTANCE: TheGhostGame;
+  
+  public static readonly FPS = 60;
+  public static readonly TILE_SIZE = 16;
+  public static readonly GAME_WIDTH = 256; // 16 TILES
+  public static readonly GAME_HEIGHT = 240; // 15 TILES
+  public static scale = 3;
 
-  constructor() {
-    super();
+  private constructor() {
+    super({
+      fps: TheGhostGame.FPS,
+      width: TheGhostGame.GAME_WIDTH * TheGhostGame.scale,
+      height: TheGhostGame.GAME_HEIGHT * TheGhostGame.scale
+    });
 
-    this.setSize(
-      this.WIDTH * this.scale,
-      this.HEIGHT * this.scale
-    );
     this.doMaintainAspectRatio();
-    this.setFps(this.FPS);
 
-    this.start();
+    this.addLastStage(new Stage1());
+    this.selectNextStage();
   }
 
-  public onUpdate(): void {
-    const enter = {
-      pressed: this.getKeyboardInput().isPressed("Enter"),
-      held: this.getKeyboardInput().isHeld("Enter"),
-      released: this.getKeyboardInput().isReleased("Enter"),
-      heldTime: this.getKeyboardInput().getHeldTime("Enter")
-    };
-
-    const mouse = {
-      x: this.getMouseInput().getX(),
-      y: this.getMouseInput().getY(),
-      leftPressed: this.getMouseInput().isPressed(0),
-      leftHeld: this.getMouseInput().isHeld(0),
-      leftReleased: this.getMouseInput().isReleased(0),
-      leftHeldTime: this.getMouseInput().getHeldTime(0),
-      scrollY: this.getMouseInput().getWheelYRotation()
+  public static instance(): TheGhostGame {
+    if(TheGhostGame.INSTANCE === undefined) {
+      TheGhostGame.INSTANCE = new TheGhostGame();
     }
 
-    console.log(`Enter: [ ${enter.pressed}, ${enter.held}, ${enter.released}, ${enter.heldTime} ]`);
-    console.log(`Mouse: [ ${mouse.x}, ${mouse.y}, ${mouse.leftPressed}, ${mouse.leftHeld}, ${mouse.leftReleased}, ${mouse.leftHeldTime}, ${mouse.scrollY} ]`);
+    return TheGhostGame.INSTANCE;
   }
 
 }

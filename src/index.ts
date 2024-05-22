@@ -2,4 +2,6 @@ import "./liveServer.js";
 
 import TheGhostGame from "./theGhostGame.js";
 
-new TheGhostGame();
+const game = TheGhostGame.instance();
+
+game.start();
